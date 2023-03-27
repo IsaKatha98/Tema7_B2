@@ -21,11 +21,13 @@ public class Hora {
 	/**
 	 * 
 	 */
+	
+	
 	//Constructor por defecto.
 	public Hora() {
 		
 	}
-	
+
 	/**
 	 * 
 	 * @param hora
