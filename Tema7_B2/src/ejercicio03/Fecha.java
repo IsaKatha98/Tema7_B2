@@ -1,15 +1,42 @@
 package ejercicio03;
 
+/**
+ * Clase Fecha que muestra la fecha actual, indica si el año es bisiesto o no y nos muestra el día siguiente
+ * a la fecha ingresada.
+ * 
+ * @author ikloerzer
+ *
+ */
 public class Fecha {
 
+	/**
+	 * Atributo privado de tipo entero referente al día.
+	 */
 	private int dia;
+	
+	/**
+	 * Atributo privado de tipo entero referente a un mes.
+	 */
 	private int mes;
+	
+	/**
+	 * atributo privado de tipo entero referente a un año.
+	 */
 	private int año;
 
+	/**
+	 * Constructor por defecto.
+	 */
 	public Fecha() {
 
 	}
 
+	/**
+	 * Constructor por defecto con parámetros.
+	 * @param dia
+	 * @param mes
+	 * @param año
+	 */
 	public Fecha(int dia, int mes, int año) {
 
 		this.dia = dia;
@@ -17,30 +44,58 @@ public class Fecha {
 		this.año = año;
 	}
 
+	/**
+	 * Método get del atributo día.
+	 * @return dia.
+	 */
 	public int getDia() {
 		return dia;
 	}
 
+	/**
+	 * Método set del atributo día
+	 * @param dia
+	 */
 	public void setDia(int dia) {
 		this.dia = dia;
 	}
 
+	/**
+	 * Método get del atributo mes
+	 * @return mes
+	 */
 	public int getMes() {
 		return mes;
 	}
-
+	
+	/**
+	 * Método set del atributo mes
+	 * @param mes
+	 */
 	public void setMes(int mes) {
 		this.mes = mes;
 	}
 
+	/**
+	 * Método get del atributo año
+	 * @return año
+	 */
 	public int getAño() {
 		return año;
 	}
-
+	
+	/**
+	 * Método set del atributo año
+	 * @param año
+	 */
 	public void setAño(int año) {
 		this.año = año;
 	}
 
+	/**
+	 * Método que comprueba si un año es bisiesto.
+	 * @return devuelve true si es bisiesto o false si no lo es.
+	 */
 	public boolean esBisiesto() {
 
 		boolean bisiesto = false;
@@ -53,6 +108,10 @@ public class Fecha {
 
 	}
 
+	/**
+	 * Mátodo que indica si la fecha es correcta o no.
+	 * @return devuelve true si la fecha es correcta y false si la fecha no es correcta.
+	 */
 	public boolean fechaCorrecta() {
 
 		boolean fechaC = false;
@@ -81,6 +140,9 @@ public class Fecha {
 
 	}
 
+	/**
+	 * Método que nos devuelve la fecha del día siguiente a la fecha ingresada.
+	 */
 	public void diaSiguiente() {
 
 		this.dia++;
@@ -92,12 +154,16 @@ public class Fecha {
 				this.dia = 01;
 				this.mes++;
 
+			} else {
+				
+				this.dia=1;
+				this.mes++;
+				
 				if (getMes() > 12) {
 
 					this.mes = 01;
 					this.año++;
 				}
-
 			}
 
 		} else if ((esBisiesto() && this.dia == 29 && this.mes == 02)) {
@@ -114,9 +180,13 @@ public class Fecha {
 
 	}
 
+	/**
+	 * Método que comprueba si un mes tiene 30 o 31 días.
+	 * @return false si los meses tienen 31 días y true si tienen 30 días.
+	 */
 	public boolean mes() {
 
-		boolean mes = true;
+		boolean mes = false;
 
 		// Le decimos que los meses que sean de 31 días son false
 		// y los que tienen 30 días son true.
@@ -128,6 +198,10 @@ public class Fecha {
 
 	}
 
+	/**
+	 * Método que nos guarda toda la info en un string.
+	 * @return mensaje tipo
+	 */
 	public String toString() {
 
 		String formato = "0";

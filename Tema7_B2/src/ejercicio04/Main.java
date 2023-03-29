@@ -21,10 +21,11 @@ public class Main {
 
 		}
 
-		// System.out.println(Arrays.toString(arrayDiscos));
+
 
 		do {
 
+			menu();
 			System.out.println("Introduzca una opción:");
 			opc = sc.nextInt();
 
@@ -59,5 +60,14 @@ public class Main {
 		} while (opc != 5);
 
 	}
+	
+	/**
+	 * Función que imprime el menú del programa
+	 */
+	private static void menu() {
+		System.out.println("COLECCIÓN DE DISCOS." + "" + "\n===================" + "\n1. Listar discos"
+				+ "\n2. Nuevo disco" + "\n3. Modificar disco" + "\n4. Borrar disco" + "\n5. Salir");
+	}
+	
 
 }
