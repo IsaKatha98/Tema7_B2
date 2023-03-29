@@ -57,14 +57,14 @@ public class Fecha {
 
 		boolean fechaC = false;
 
-		if (getDia() >0 || getDia() <= 31) {
+		if (getDia() > 0 || getDia() <= 31) {
 
 			if (getMes() == 2 && getDia() <= 29 && esBisiesto()) {
 
 				fechaC = true;
 
 			}
-			
+
 			if (getMes() <= 12 && getMes() > 0) {
 
 				fechaC = true;
@@ -77,59 +77,77 @@ public class Fecha {
 
 		}
 
-		
 		return fechaC;
 
 	}
 
 	public void diaSiguiente() {
 
+		this.dia++;
 
-		if (getDia() > 31&&getMes()!=02) {
+		if (getDia() >= 31 && getMes() != 02) {
 
-			this.dia = 01;
-			this.mes++;
-			
-			if (getMes() > 12) {
+			if (mes()) {
 
-				this.mes = 01;
-				this.año++;
+				this.dia = 01;
+				this.mes++;
+
+				if (getMes() > 12) {
+
+					this.mes = 01;
+					this.año++;
+				}
+
 			}
 
-		} else if ((esBisiesto()&&this.dia==29&&this.mes==02)) {
-			
-			this.dia=01;
-			this.mes= 03;
-			
-		} else if ((!esBisiesto()&&this.dia==29&&this.mes==02)) {
-			
-			this.dia=01;
-			this.mes= 03;
-			
+		} else if ((esBisiesto() && this.dia == 29 && this.mes == 02)) {
+
+			this.dia = 01;
+			this.mes = 03;
+
+		} else if ((!esBisiesto() && this.dia == 29 && this.mes == 02)) {
+
+			this.dia = 01;
+			this.mes = 03;
+
 		}
-	
+
+	}
+
+	public boolean mes() {
+
+		boolean mes = true;
+
+		// Le decimos que los meses que sean de 31 días son false
+		// y los que tienen 30 días son true.
+		if (getMes() == 4 || getMes() == 6 || getMes() == 9 || getMes() == 11) {
+			mes = true;
+		}
+
+		return mes;
+
 	}
 
 	public String toString() {
 
-		String formato="0";
-		String dia =String.valueOf(getDia());
-		String mes= String.valueOf(getMes());
-		String año=String.valueOf(getAño());
+		String formato = "0";
+		String dia = String.valueOf(getDia());
+		String mes = String.valueOf(getMes());
+		String año = String.valueOf(getAño());
 		String result;
-		
-		if (getDia()<10) {
-			
-			dia=formato+String.valueOf(getDia());
-			
-		}
-		
-		if (getMes()<10) {
-			
-			mes=formato+String.valueOf(getMes());
+
+		if (getDia() < 10) {
+
+			dia = formato + String.valueOf(getDia());
+
 		}
 
-		result = dia+"/"+mes+"/"+"/"+año;
+		if (getMes() < 10) {
+
+			mes = formato + String.valueOf(getMes());
+		}
+
+		result = dia + "/" + mes + "/" + año;
 
 		return result;
 	}
