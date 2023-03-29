@@ -4,37 +4,35 @@ public class Hora {
 
 	//Declaramos los atributos con private.
 	/**
-	 * 
+	 * Atributo privado de tipo entero, referente a la hora.
 	 */
 	private int hora;
 	
 	/**
-	 * 
+	 * Atributo privado de tipo entero referente a los minutos.
 	 */
 	private int min;
 	
 	/**
-	 * 
+	 * Atributo privado de tipo entero referente a los segundos.
 	 */
 	private int seg;
 	
 	/**
-	 * 
+	 * Constructo por defecto, no tiene parámetros y no devuelve nada.
 	 */
 	
-	
-	//Constructor por defecto.
 	public Hora() {
 		
 	}
 
 	/**
-	 * 
+	 * Constructor de la clase Hora, con parámetros.
 	 * @param hora
 	 * @param min
 	 * @param seg
 	 */
-	//Constructor con parámetros.
+	
 	public Hora (int hora, int min, int seg) {
 		
 		this.hora=hora;
@@ -43,8 +41,8 @@ public class Hora {
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Método get del atributo hora.
+	 * @return un tipo entero hora.
 	 */
 	public int getHora () {
 		
@@ -52,8 +50,8 @@ public class Hora {
 	}
 	
 	/**
-	 * 
-	 * @param hora
+	 * Método set del atributo hora, debe estar entre 0 y 23.
+	 * @param hora valor de tipo entero que introduce el usuario.
 	 */
 	public void setHora(int hora) {
 		if (hora>=0&&hora<=23) {
@@ -64,8 +62,8 @@ public class Hora {
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Método get del atributo min.
+	 * @return un tipo entero min.
 	 */
 	public int getMin () {
 		
@@ -73,8 +71,8 @@ public class Hora {
 	}
 	
 	/**
-	 * 
-	 * @param min
+	 *  Método set del atributo min, debe estar entre 0 y 59.
+	 * @param min valor de tipo entero que introduce el usuario.
 	 */
 	public void setMin (int min) {
 		if (min>=0&&min<=59) {
@@ -86,8 +84,8 @@ public class Hora {
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Método get del atributo seg.
+	 * @return un tipo entero seg.
 	 */
 	public int getSeg () {
 		
@@ -95,8 +93,8 @@ public class Hora {
 	}
 	
 	/**
-	 * 
-	 * @param seg
+	 *  Método set del atributo seg, debe estar entre 0 y 59.
+	 * @param seg valor de tipo entero que introduce el usuario.
 	 */
 	public void setSeg (int seg) {
 		
