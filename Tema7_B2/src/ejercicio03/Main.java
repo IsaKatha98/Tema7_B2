@@ -42,14 +42,14 @@ public class Main {
 			System.out.println("La fecha introducida no es válida.");
 		}
 		
-		if (!fecha.esBisiesto()) {
+		/*if (!fecha.esBisiesto()) {
 			
 			System.out.println("No es bisiesto.");
 			
 		} else {
 			
 			System.out.println("Es bisiesto.");
-		}
+		}*/
 		
 		System.out.println("Si le añadimos un día resulta: ");
 		

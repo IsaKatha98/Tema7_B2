@@ -12,17 +12,17 @@ public class Fecha {
 	/**
 	 * Atributo privado de tipo entero referente al día.
 	 */
-	private int dia;
+	private int dia=1;
 	
 	/**
 	 * Atributo privado de tipo entero referente a un mes.
 	 */
-	private int mes;
+	private int mes=1;
 	
 	/**
 	 * atributo privado de tipo entero referente a un año.
 	 */
-	private int año;
+	private int año=1970;
 
 	/**
 	 * Constructor por defecto.
@@ -57,7 +57,9 @@ public class Fecha {
 	 * @param dia
 	 */
 	public void setDia(int dia) {
-		this.dia = dia;
+		if (dia>=1&&dia<=31) {
+			this.dia = dia;
+		}
 	}
 
 	/**
@@ -73,7 +75,11 @@ public class Fecha {
 	 * @param mes
 	 */
 	public void setMes(int mes) {
-		this.mes = mes;
+		
+		if (mes>=01&&mes<=12) {
+		
+			this.mes = mes;
+		}
 	}
 
 	/**
@@ -96,11 +102,11 @@ public class Fecha {
 	 * Método que comprueba si un año es bisiesto.
 	 * @return devuelve true si es bisiesto o false si no lo es.
 	 */
-	public boolean esBisiesto() {
+	private boolean esBisiesto() {
 
 		boolean bisiesto = false;
 
-		if (getAño() % 4 == 0 || (getAño() % 100 == 0 && getAño() % 400 == 0)) {
+		if (getAño() % 4 == 0 && (getAño() % 100 != 0 || getAño() % 400 == 0)) {
 			bisiesto = true;
 		}
 
@@ -149,11 +155,13 @@ public class Fecha {
 
 		if (getDia() >= 31 && getMes() != 02) {
 
+			//Si el mes es true tiene 30 días.
 			if (mes()) {
 
 				this.dia = 01;
 				this.mes++;
 
+			//Si el mes tiene 31 días.
 			} else {
 				
 				this.dia=1;
@@ -221,7 +229,7 @@ public class Fecha {
 			mes = formato + String.valueOf(getMes());
 		}
 
-		result = dia + "/" + mes + "/" + año;
+		result = dia + "-" + mes + "-" + año;
 
 		return result;
 	}

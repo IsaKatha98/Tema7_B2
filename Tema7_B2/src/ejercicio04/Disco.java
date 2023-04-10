@@ -280,6 +280,7 @@ public class Disco {
 			System.out.println("Introduzca la duración del disco: ");
 			duracion = Main.sc.nextInt();
 
+			
 		} else {
 
 			System.err.println("El disco introducido no existe.");
