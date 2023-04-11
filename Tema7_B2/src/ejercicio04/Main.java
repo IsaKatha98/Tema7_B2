@@ -9,65 +9,184 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		// Esto es una clase Disco. Dentro hay que crear 10 objetos de tipo Disco.
-		Disco[] arrayDiscos = new Disco[10];
-		Disco d = new Disco();
-		int opc, contador;
+		int opcion = 0; // opcion del menú
+		int contador = 0; // contador que indica la siguiente posición libre
 
-		// Con el for recorremos el array y creamos un objeto por cada posición.
-		for (int i = 0; i < arrayDiscos.length; i++) {
+		Disco[] discos = new Disco[10]; // Esto es un array de tipo Disco, no confundir con los objetos.
 
-			arrayDiscos[i] = new Disco();
+		// Creamos 10 objetos, uno por cada posición del array.
+		for (int i = 0; i < discos.length; i++) {
+
+			discos[i] = new Disco();
 
 		}
 
-
-
+		// Hacemos un bucle que se repita hasta que nos salgamos del programa.
 		do {
 
+			// Presentamos el menú.
 			menu();
-			System.out.println("Introduzca una opción:");
-			opc = sc.nextInt();
 
-			switch (opc) {
+			// Preguntamos la opción que quiere el usuario.
+			System.out.println("Introduzca la opción que desea: ");
+			opcion = sc.nextInt();
 
-			case 1 -> d.listado(arrayDiscos);
+			// Hacemos un switch.
+			switch (opcion) {
+
+			case 1 -> {
+
+				// Función de presentar el listado.
+				listado(discos);
+
+			}
 
 			case 2 -> {
-				contador = d.posicionLibre(arrayDiscos);
 
-				if (contador >= 0) {
-					d.nuevoDisco(arrayDiscos, contador);
+				// Buscamos la primera posición libre.
+				contador = posicionLibre(discos);
+
+				// En caso de que no encuentre ninguna posición libre.
+				if (contador < 0) {
+					System.out.println("No se pueden añadir más discos.");
+
+					// En caso de que haya una posición libre, llamamos a la funcion para añadir un
+					// disco nuevo.
 				} else {
-					System.out.println("No hay discos libres.");
+					nuevoDisco(discos, contador);
 
 				}
 			}
 
-			case 3 -> d.modificarDisco(arrayDiscos);
+			case 3 -> {
 
-			case 4 -> d.borrar(arrayDiscos);
+				modificar(discos);
+			}
+
+			case 4 -> {
+
+				borrarDisco(discos);
+			}
 
 			case 5 -> {
 
-				System.out.println("SALIENDO...");
-				break;
+				System.out.println("Ha salido del programa.");
 			}
 
-			default -> System.out.println("Ha introducido un valor no válido.");
+			default -> {
 
+				System.err.println("Opción introducida incorrecta");
 			}
-		} while (opc != 5);
+			}
 
+		} while (opcion != 5);
 	}
-	
-	/**
-	 * Función que imprime el menú del programa
-	 */
+
 	private static void menu() {
+
 		System.out.println("COLECCIÓN DE DISCOS." + "" + "\n===================" + "\n1. Listar discos"
 				+ "\n2. Nuevo disco" + "\n3. Modificar disco" + "\n4. Borrar disco" + "\n5. Salir");
+
 	}
-	
+
+	private static void listado(Disco[] discos) {
+
+		// Recorremos el array
+		for (Disco disco : discos) {
+
+			// Imprimimos las posiciones cuyo codigo sea distinto de LIBRE.
+			if (!disco.getCodigo().equals("LIBRE")) {
+
+				System.out.println(disco);
+			}
+		}
+
+	}
+
+	private static int posicionLibre(Disco[] discos) {
+
+		int index = 0;
+
+		// Buscamos la primera posición que esté libre.
+		while (index < discos.length && !discos[index].getCodigo().equals("LIBRE")) {
+			index++;
+		}
+
+		// En caso de que no lo encuentre, index será -1
+		if (index == discos.length) {
+			index = -1;
+		}
+
+		// Devolvemos index.
+		return index;
+	}
+
+	private static void nuevoDisco(Disco[] discos, int contador) {
+
+		String cod;
+		String autor, titulo, genero;
+		int duracion;
+
+		// Le damos un valor a codigo, la primera posicion libre que hay en discos.
+		cod = String.valueOf(contador);
+		discos[contador].setCodigo(cod);
+
+		sc.nextLine();
+		System.out.println("Introduzca el autor del disco: ");
+		autor = sc.nextLine();
+		System.out.println("Introduzca el título del disco: ");
+		titulo = sc.nextLine();
+		System.out.println("Introduzca el genero del disco: ");
+		genero = sc.nextLine();
+		System.out.println("Introduzca la duración del disco: ");
+		duracion = sc.nextInt();
+
+		// Asiganmos todo a esa posición
+		discos[contador] = new Disco(cod, autor, titulo, genero, duracion);
+	}
+
+	private static void modificar(Disco[] discos) {
+
+		int cod;
+
+		// Preguntamos por el codigo del disco que se quiere modificar.
+		System.out.println("Introduzca el código del disco a modificar: ");
+		cod = sc.nextInt();
+
+		// Si el disco existe
+		if (!discos[cod].getCodigo().equals("LIBRE")) {
+			sc.nextLine();
+			System.out.println("Introduzca el autor del disco nuevo: ");
+			discos[cod].setAutor(sc.nextLine());
+			System.out.println("Introduzca el título del disco nuevo: ");
+			discos[cod].setTitulo(sc.nextLine());
+			System.out.println("Introduzca el género del disco nuevo: ");
+			discos[cod].setGenero(sc.nextLine());
+			System.out.println("Introduzca la duración del disco nuevo: ");
+			discos[cod].setDuracion(sc.nextInt());
+			
+		} else {
+
+			System.err.println("El disco introducido no existe.");
+		}
+	}
+
+	private static void borrarDisco(Disco[] discos) {
+
+		int cod;
+
+		System.out.println("Introduzca el código del disco a borrar: ");
+		cod = sc.nextInt();
+
+		// Buscamos el codigo y si existe lo cambiamos a libre.
+		if (cod >= 0 && cod < discos.length && !discos[cod].getCodigo().equals("LIBRE")) {
+
+			discos[cod].setCodigo("LIBRE");
+
+		} else {
+
+			System.out.println("Ese código no existe.");
+		}
+	}
 
 }
